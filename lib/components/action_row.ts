@@ -1,9 +1,19 @@
-export class Message {
-  props?: {
-    children?: [];
-  };
+import { ComponentType, type APIComponentInMessageActionRow } from "discord.js";
+import { wrapArrayIfNeeded } from "../helpers";
+
+export class ActionRow {
+  constructor(
+    private props: {
+      children?:
+        | APIComponentInMessageActionRow
+        | APIComponentInMessageActionRow[];
+    }
+  ) {}
 
   render() {
-    return { hi: "test" };
+    return {
+      type: ComponentType.ActionRow,
+      components: wrapArrayIfNeeded(this.props?.children),
+    };
   }
 }
