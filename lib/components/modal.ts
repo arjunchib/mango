@@ -16,7 +16,7 @@ export class Modal {
 
   render() {
     const modal = this.props as any;
-    modal["components"] = wrapArrayIfNeeded(modal["children"]);
+    modal["components"] = wrapArrayIfNeeded(modal["children"]).flat(Infinity);
     delete modal["children"];
     return modal;
   }

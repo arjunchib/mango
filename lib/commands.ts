@@ -2,6 +2,7 @@ import { Glob } from "bun";
 import type {
   APIApplicationCommand,
   AutocompleteInteraction,
+  ButtonInteraction,
   ChatInputCommandInteraction,
   ModalSubmitInteraction,
 } from "discord.js";
@@ -19,6 +20,7 @@ export interface Command {
     onModalSubmit?: (
       interaction: ModalSubmitInteraction
     ) => PossiblePromise<void>;
+    onButton?: (interaction: ButtonInteraction) => PossiblePromise<void>;
   };
 }
 

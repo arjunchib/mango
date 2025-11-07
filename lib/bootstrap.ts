@@ -27,13 +27,22 @@ export function bootstrap() {
         const res = cmd?.onAutocomplete?.(interaction);
         if (res instanceof Promise) await res;
       } else if (interaction.isModalSubmit()) {
-        const commandName = interaction.customId;
+        const commandName =
+          interaction.customId.split(":").at(0) || interaction.customId;
         const module = await findController(commandName);
         const cmd = new module.default();
         const res = cmd?.onModalSubmit?.(interaction);
         if (res instanceof Promise) await res;
+      } else if (interaction.isButton()) {
+        const commandName =
+          interaction.customId.split(":").at(0) || interaction.customId;
+        const module = await findController(commandName);
+        const cmd = new module.default();
+        const res = cmd?.onButton?.(interaction);
+        if (res instanceof Promise) await res;
       }
     });
+    globalThis.client.login(Bun.env.TOKEN!);
   }
   return globalThis.client;
 }

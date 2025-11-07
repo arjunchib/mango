@@ -19,5 +19,6 @@ export type ReverseMap<T> = {
 export type PossiblePromise<T> = T | Promise<T>;
 
 export function wrapArrayIfNeeded<T>(value: T | T[]): T[] {
-  return Array.isArray(value) ? value : [value];
+  const arr = Array.isArray(value) ? value : [value];
+  return arr.filter((item) => !!item);
 }

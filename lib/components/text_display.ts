@@ -13,7 +13,6 @@ export class TextDisplay {
   render() {
     const component = this.props as any;
     const { children } = component;
-    console.log(children);
     component["content"] = Array.isArray(children)
       ? children.join(" ")
       : children;

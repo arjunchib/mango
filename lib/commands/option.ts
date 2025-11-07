@@ -1,13 +1,9 @@
 import {
   ApplicationCommandOptionBase,
   ApplicationCommandOptionType,
-  ApplicationCommandType,
   SlashCommandBuilder,
-  type APIApplicationCommandOption,
-  type ApplicationCommandOption,
-  type RESTPostAPIChatInputApplicationCommandsJSONBody,
 } from "discord.js";
-import type { Partialize, Prettify, ReverseMap } from "../helpers";
+import type { Partialize, Prettify } from "../helpers";
 
 export class Option {
   constructor(public props: Props) {}
