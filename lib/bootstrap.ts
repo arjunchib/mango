@@ -10,6 +10,9 @@ export function bootstrap() {
     globalThis.client = new Client({
       intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates],
     });
+    globalThis.client.on("error", (error) => {
+      console.error(error);
+    });
     globalThis.client.on(Events.ClientReady, (readyClient) => {
       console.log(`Logged in as ${readyClient.user.tag}!`);
     });
