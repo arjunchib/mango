@@ -11,12 +11,14 @@ export class Modal {
         ShowModalOptions & {
           children?: any[];
         }
-    >
+    >,
   ) {}
 
   render() {
     const modal = this.props as any;
-    modal["components"] = wrapArrayIfNeeded(modal["children"]).flat(Infinity);
+    modal["components"] = wrapArrayIfNeeded(modal["children"])
+      .flat(Infinity)
+      .filter((item) => !!item);
     delete modal["children"];
     return modal;
   }
