@@ -1,5 +1,6 @@
 export function jsx(...args) {
-  return {};
+  const [tag, props] = args;
+  return new tag(props).render();
 }
 
 export { jsx as jsxs };
