@@ -1,15 +1,13 @@
-import { Client, Events, GatewayIntentBits } from "discord.js";
+import { Client, Events, type ClientOptions } from "discord.js";
 import { findController } from "./commands";
 
 declare global {
   var client: Client | undefined;
 }
 
-export function bootstrap() {
+export async function bootstrap(options: ClientOptions) {
   if (!globalThis.client) {
-    globalThis.client = new Client({
-      intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates],
-    });
+    globalThis.client = new Client(options);
     globalThis.client.on("error", (error) => {
       console.error(error);
     });
@@ -45,7 +43,7 @@ export function bootstrap() {
         if (res instanceof Promise) await res;
       }
     });
-    globalThis.client.login(Bun.env.TOKEN!);
+    await globalThis.client.login(Bun.env.TOKEN!);
   }
   return globalThis.client;
 }
